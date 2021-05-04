@@ -39,6 +39,10 @@ uint16_t rtd1, rtd2 = 0;
 float ratio1, ratio2, pt1, pt2 , R1, R2;
 float final_temp, Pt1000_avg;
 
+//varible declaration of pins for actuator and claw 
+int actuator = 48;
+int claw = 4;
+
 void setup(void)
 {
   sensors.begin();
@@ -52,6 +56,9 @@ void setup(void)
   thermo1.begin(MAX31865_2WIRE);
   thermo2.begin(MAX31865_2WIRE);
 
+  // declaring both the pins as output 
+  pinMode(actuator,OUTPUT);
+  pinMode(claw,OUTPUT);
 }
 
 void loop(void)
@@ -91,4 +98,8 @@ void loop(void)
   }
   delay(1000);
 
+  digitalWrite(actuator,HIGH); //for activating the linear actuator of gas mechanism
+  digitalWrite(claw,HIGH);    //for activating claw mechanism 
+
+  delay(5000);
 }
